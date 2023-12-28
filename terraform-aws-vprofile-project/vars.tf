@@ -1,22 +1,22 @@
 variable AWS_REGION {
-  default = "us-east-2"
+  default = "us-east-1"
 }
 
 variable AMIS {
   type = map
   default = {
-    us-east-2  = "ami-07efac79022b86107"
-    us-east-1  = "ami-06397100adf427136"
-    ap-south-1 = "ami-009110a2bf8d7dd0a"
+    us-east-2  = "ami-0ee4f2271a4df2d7d"
+    us-east-1  = "ami-079db87dc4c10ac91"
+    us-west-1 = "ami-0082110c417e4726e"
   }
 }
 
 variable PRIV_KEY_PATH {
-  default = "vprofilekey"
+  default = "doingsvprofilekey"
 }
 
 variable PUB_KEY_PATH {
-  default = "vprofilekey.pub"
+  default = "doingsvprofilekey.pub"
 }
 
 variable USERNAME {
@@ -52,19 +52,19 @@ variable instance_count {
 }
 
 variable VPC_NAME {
-  default = "vprofile-VPC"
+  default = "doingsvprofile-VPC"
 }
 
 variable Zone1 {
-  default = "us-east-2a"
+  default = "us-east-1a"
 }
 
 variable Zone2 {
-  default = "us-east-2b"
+  default = "us-east-1b"
 }
 
 variable Zone3 {
-  default = "us-east-2c"
+  default = "us-east-1c"
 }
 
 variable VpcCIDR {
@@ -95,6 +95,3 @@ variable PrivSub2CIDR {
 variable PrivSub3CIDR {
   default = "172.21.6.0/24"
 }
-
-
-

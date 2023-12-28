@@ -20,7 +20,7 @@ resource "aws_db_instance" "doingsvprofile-rds" {
   engine                 = "mysql"
   engine_version         = "8.0.35"
   instance_class         = "db.t2.micro"
-  name                   = var.dbname
+  db_name                = var.dbname
   username               = var.dbuser
   password               = var.dbpass
   parameter_group_name   = "default.mysql8.0"
@@ -47,7 +47,7 @@ resource "aws_mq_broker" "doingsvprofile-rmq" {
   engine_type        = "ActiveMQ"
   engine_version     = "5.15.0"
   host_instance_type = "mq.t2.micro"
-  subnet_groups      = [aws_security_group.doingsvprofile-backend-sg.id]
+  security_groups    = [aws_security_group.doingsvprofile-backend-sg.id]
   subnet_ids         = [module.vpc.private_subnets[0]]
 
   user {

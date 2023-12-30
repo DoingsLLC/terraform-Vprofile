@@ -1,25 +1,25 @@
-resource "aws_instance" "vprofile-bastion" {
+resource "aws_instance" "doingsvprofile-bastion" {
   ami                    = lookup(var.AMIS, var.AWS_REGION)
   instance_type          = "t2.micro"
-  key_name               = aws_key_pair.vprofilekey.key_name
+  key_name               = aws_key_pair.doingsvprofilekey.key_name
   subnet_id              = module.vpc.public_subnets[0]
   count                  = var.instance_count
-  vpc_security_group_ids = [aws_security_group.vprofile-bastion-sg.id]
+  vpc_security_group_ids = [aws_security_group.doingsvprofile-bastion-sg.id]
 
   tags = {
-    Name    = "vprofile-bastion"
-    PROJECT = "vprofile"
+    Name    = "doingsvprofile-bastion"
+    PROJECT = "doingsvprofile"
   }
 
   provisioner "file" {
-    content     = templatefile("templates/db-deploy.tmpl", { rds-endpoint = aws_db_instance.vprofile-rds.address, dbuser = var.dbuser, dbpass = var.dbpass })
-    destination = "/tmp/vprofile-dbdeploy.sh"
+    content     = templatefile("templates/db-deploy.tmpl", { rds-endpoint = aws_db_instance.doingsvprofile-rds.address, dbuser = var.dbuser, dbpass = var.dbpass })
+    destination = "/tmp/doingsvprofile-dbdeploy.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/vprofile-dbdeploy.sh",
-      "sudo /tmp/vprofile-dbdeploy.sh"
+      "chmod +x /tmp/doingsvprofile-dbdeploy.sh",
+      "sudo /tmp/doingsvprofile-dbdeploy.sh"
     ]
   }
 
@@ -28,5 +28,5 @@ resource "aws_instance" "vprofile-bastion" {
     private_key = file(var.PRIV_KEY_PATH)
     host        = self.public_ip
   }
-  depends_on = [aws_db_instance.vprofile-rds]
+  depends_on = [aws_db_instance.doingsvprofile-rds]
 }

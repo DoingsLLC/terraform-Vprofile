@@ -15,6 +15,7 @@ resource "aws_elasticache_subnet_group" "doingsvprofile-ecache-subgrp" {
 }
 
 resource "aws_db_instance" "doingsvprofile-rds" {
+  identifier             = "doings-db"
   allocated_storage      = 20
   storage_type           = "gp2"
   engine                 = "mysql"

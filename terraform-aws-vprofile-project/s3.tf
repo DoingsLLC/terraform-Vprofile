@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "example" {
+resource "aws_s3_bucket" "doings-s3" {
   bucket = "terra-doings-state"
 
   tags = {

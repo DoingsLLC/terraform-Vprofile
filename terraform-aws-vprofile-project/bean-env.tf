@@ -1,8 +1,8 @@
-resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
-  name                = "vprofile-bean-prod"
-  application         = aws_elastic_beanstalk_application.vprofile-prod.name
-  solution_stack_name = "64bit Amazon Linux 2 v4.1.1 running Tomcat 8.5 Corretto 11"
-  cname_prefix        = "vprofile-bean-prod-domain"
+resource "aws_elastic_beanstalk_environment" "doingsvprofile-bean-prod" {
+  name                = "doingsvprofile-bean-prod"
+  application         = aws_elastic_beanstalk_application.doingsvprofile-prod.name
+  solution_stack_name = "64bit Amazon Linux 2023 v5.1.2 running Tomcat 10 Corretto 17"
+  cname_prefix        = "doingsvprofile-bean-prod-domain"
   setting {
     name      = "VPCId"
     namespace = "aws:ec2:vpc"
@@ -39,7 +39,7 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "EC2KeyName"
-    value     = aws_key_pair.vprofilekey.key_name
+    value     = aws_key_pair.doingsvprofilekey.key_name
   }
 
   setting {
@@ -61,7 +61,7 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "environment"
-    value     = "prod"
+    value     = "doingsprod"
   }
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
@@ -121,15 +121,15 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "SecurityGroups"
-    value     = aws_security_group.vprofile-prod-sg.id
+    value     = aws_security_group.doingsvprofile-prod-sg.id
   }
 
   setting {
     namespace = "aws:elbv2:loadbalancer"
     name      = "SecurityGroups"
-    value     = aws_security_group.vprofile-bean-elb-sg.id
+    value     = aws_security_group.doingsvprofile-bean-elb-sg.id
   }
 
-  depends_on = [aws_security_group.vprofile-bean-elb-sg, aws_security_group.vprofile-prod-sg]
+  depends_on = [aws_security_group.doingsvprofile-bean-elb-sg, aws_security_group.doingsvprofile-prod-sg]
 
 }

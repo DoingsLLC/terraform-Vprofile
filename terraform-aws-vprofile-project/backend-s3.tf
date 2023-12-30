@@ -9,7 +9,7 @@ terraform {
 resource "aws_s3_bucket" "doings-s3" {
   # Your AWS S3 bucket configuration goes here
   bucket = "terra-doings-state"
-
+  force_destroy = true
   tags = {
     Name        = "Doings bucket"
     Environment = "Dev-Prod"

@@ -13,7 +13,7 @@ resource "aws_instance" "doingsvprofile-bastion" {
   }
 
   provisioner "file" {
-    source      = templatefile("templates/db-deploy.tmpl", { rds_endpoint = aws_db_instance.doingsvprofile-rds.address, dbuser = var.dbuser, dbpass = var.dbpass })
+    source      = templatefile("db-deploy.tmpl", { rds_endpoint = aws_db_instance.doingsvprofile-rds.address, dbuser = var.dbuser, dbpass = var.dbpass })
     destination = "/tmp/doingsvprofile-dbdeploy.sh"
   }
 

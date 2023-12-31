@@ -7,7 +7,7 @@ resource "aws_db_subnet_group" "doingsvprofile-rds-subgrp" {
 }
 
 resource "aws_elasticache_subnet_group" "doingsvprofile-ecache-subgrp" {
-  name       = "doings_vprofile-ecache-subgrp"
+  name       = "doingsvprofile-ecache-subgrp"
   subnet_ids = [module.vpc.private_subnets[0], module.vpc.private_subnets[1], module.vpc.private_subnets[2]]
   tags = {
     Name = "Doings subnet group for elasticache"

@@ -12,11 +12,11 @@ resource "aws_instance" "doingsvprofile-bastion" {
   }
 
   provisioner "file" {
-    source      = templatefile("templates/db-deploy.tmpl", { rds-endpoint = aws_db_instance.doingsvprofile-rds.address, dbuser = var.dbuser, dbpass = var.dbpass })
+    source      = templatefile("templates/db-deploy.tmpl", { rds_endpoint = aws_db_instance.doingsvprofile-rds.address, dbuser = var.dbuser, dbpass = var.dbpass })
     destination = "/tmp/doingsvprofile-dbdeploy.sh"
   }
 
-provisioner "remote-exec" {
+  provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/doingsvprofile-dbdeploy.sh",
       "sudo /tmp/doingsvprofile-dbdeploy.sh"

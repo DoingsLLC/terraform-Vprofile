@@ -27,7 +27,7 @@ resource "aws_instance" "doingsvprofile-bastion" {
   connection {
     user        = var.USERNAME
     private_key = file(var.PRIV_KEY_PATH)
-    host        = self.private_ip
+    host        = self.public_ip
   }
   depends_on = [aws_db_instance.doingsvprofile-rds]
 }

@@ -11,7 +11,7 @@ resource "aws_elastic_beanstalk_environment" "doingsvprofile-bean-prod" {
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "IamInstanceProfile"
-    value     = "arn:aws:iam::456618395112:role/aws-elasticbeanstalk-ec2-role"
+    value     = "arn:aws:iam::456618395112:instance-profile/nodes.pso.doingsllc.com"
   }
   setting {
     namespace = "aws:ec2:vpc"

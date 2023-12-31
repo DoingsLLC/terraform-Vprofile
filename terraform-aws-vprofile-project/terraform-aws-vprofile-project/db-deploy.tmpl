@@ -1,0 +1,14 @@
+# Update package repositories
+sudo apt update
+
+# Install necessary packages
+sudo apt install git mysql-client -y
+
+# Clone the Git repository (without sudo)
+git clone -b vp-rem https://github.com/devopshydclub/vprofile-project.git
+
+# Set appropriate permissions to the SQL file
+sudo chmod 644 /home/ubuntu/vprofile-project/src/main/resources/db_backup.sql
+
+# Execute MySQL commands to import data
+sudo mysql -h ${rds_endpoint} -u ${dbuser} --password=${dbpass} accounts --ssl-mode=DISABLED < /home/ubuntu/vprofile-project/src/main/resources/db_backup.sql

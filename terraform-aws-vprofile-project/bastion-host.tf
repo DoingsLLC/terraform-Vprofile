@@ -11,10 +11,18 @@ resource "aws_instance" "doingsvprofile-bastion" {
     PROJECT = "doingsvprofile"
   }
 
-  provisioner "file" {
-    source      = templatefile("templates/db-deploy.tmpl", { rds-endpoint = aws_db_instance.doingsvprofile-rds.address, dbuser = var.dbuser, dbpass = var.dbpass })
-    destination = "~/tmp/doingsvprofile-dbdeploy.sh"
-  }
+ # provisioner "file" {
+ #   source      = templatefile("templates/db-deploy.tmpl", { rds-endpoint = aws_db_instance.doingsvprofile-rds.address, dbuser = var.dbuser, dbpass = var.dbpass })
+ #   destination = "~/tmp/doingsvprofile-dbdeploy.sh"
+ # }
+locals {
+  db_deploy_content = file("templates/db-deploy.tmpl")
+}
+
+provisioner "file" {
+  content     = local.db_deploy_content
+  destination = "/tmp/doingsvprofile-dbdeploy.sh"
+}
 
   provisioner "remote-exec" {
     inline = [

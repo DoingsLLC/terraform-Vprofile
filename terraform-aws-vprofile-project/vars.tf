@@ -32,7 +32,7 @@ variable rmquser {
 }
 
 variable rmqpass {
-  default = "admin123"
+  default = "admin1234567"
 }
 
 variable dbuser {

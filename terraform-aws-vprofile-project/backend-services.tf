@@ -46,7 +46,7 @@ resource "aws_elasticache_cluster" "doingsvprofile-cache" {
 resource "aws_mq_broker" "doingsvprofile-rmq" {
   broker_name        = "doingsvprofile-rmq"
   engine_type        = "ActiveMQ"
-  engine_version     = "5.15.0"
+  engine_version     = "5.17.6"
   host_instance_type = "mq.t2.micro"
   security_groups    = [aws_security_group.doingsvprofile-backend-sg.id]
   subnet_ids         = [module.vpc.private_subnets[0]]
